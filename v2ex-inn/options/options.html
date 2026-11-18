@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <title>V2EX Inn 设置</title>
+  <style>
+    body { max-width: 480px; margin: 40px auto; padding: 0 16px; font: 14px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; color: #333; }
+    fieldset { border: 1px solid #ddd; border-radius: 6px; margin-bottom: 16px; }
+    label { display: block; margin: 8px 0; }
+    input[type=number] { width: 60px; }
+    #saved { color: #3a9a4a; margin-left: 8px; }
+    @media (prefers-color-scheme: dark) { body { background: #1e1e1e; color: #ddd; } fieldset { border-color: #444; } }
+  </style>
+</head>
+<body>
+  <h2>V2EX Inn 设置</h2>
+  <fieldset>
+    <legend>用户标签</legend>
+    <label><input type="checkbox" id="tagsEnabled" /> 启用用户标签</label>
+  </fieldset>
+  <fieldset>
+    <legend>热门回复</legend>
+    <label><input type="checkbox" id="hotEnabled" /> 在主题下方置顶热门回复</label>
+    <label>最多显示 <input type="number" id="hotTop" min="1" max="20" /> 条</label>
+    <label>至少 <input type="number" id="hotMin" min="1" max="999" /> 个 ❤</label>
+  </fieldset>
+  <button id="save">保存</button><span id="saved" hidden>已保存</span>
+  <script src="../src/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

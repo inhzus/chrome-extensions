@@ -1,0 +1,20 @@
+body { width: 320px; margin: 0; padding: 10px; font: 13px -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif; color: #333; background: #fff; }
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+a { color: #778087; }
+#search { box-sizing: border-box; width: 100%; padding: 5px 6px; border: 1px solid #ccc; border-radius: 4px; }
+#list { list-style: none; margin: 8px 0; padding: 0; max-height: 360px; overflow-y: auto; }
+#list li { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-bottom: 1px solid #eee; }
+#list li a.user { font-weight: bold; color: #333; text-decoration: none; }
+.pills { display: flex; flex-wrap: wrap; gap: 3px; flex: 1; }
+.pill { font-size: 11px; padding: 0 6px; line-height: 16px; border-radius: 8px; color: #fff; }
+.del { border: none; background: none; color: #bbb; cursor: pointer; font-size: 14px; }
+.del:hover { color: #e0475b; }
+footer { display: flex; gap: 6px; }
+footer button { flex: 1; padding: 5px; border: 1px solid #ccc; border-radius: 4px; background: #f7f7f7; cursor: pointer; }
+#empty { color: #999; }
+@media (prefers-color-scheme: dark) {
+  body { background: #1e1e1e; color: #ddd; }
+  #list li a.user { color: #ddd; }
+  #list li { border-color: #333; }
+  #search, footer button { background: #2a2a2a; color: #ddd; border-color: #444; }
+}

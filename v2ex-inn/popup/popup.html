@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <strong>V2EX Inn</strong>
+    <a href="#" id="open-options">设置</a>
+  </header>
+  <input id="search" type="search" placeholder="搜索用户或标签" />
+  <ul id="list"></ul>
+  <p id="empty" hidden>还没有标签。在 V2EX 用户名旁点 ＋ 添加。</p>
+  <footer>
+    <button id="export">导出 JSON</button>
+    <button id="import">导入 JSON</button>
+    <input id="file" type="file" accept="application/json,.json" hidden />
+  </footer>
+  <script src="../src/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

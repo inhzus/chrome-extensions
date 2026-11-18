@@ -1,0 +1,95 @@
+/* ---- user tags ---- */
+.inn-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+  cursor: pointer;
+  font-weight: normal;
+}
+.inn-pill {
+  font-size: 11px;
+  line-height: 16px;
+  padding: 0 6px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--inn-c, #888);
+  white-space: nowrap;
+}
+.inn-edit {
+  font-size: 11px;
+  line-height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  color: #999;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.inn-edit:hover { color: #333; background: rgba(128, 128, 128, 0.15); }
+.cell:hover .inn-edit,
+.header:hover .inn-edit,
+.inn-tags:hover .inn-edit,
+.inn-big .inn-edit { opacity: 1; }
+.inn-big { margin-left: 8px; }
+.inn-big .inn-pill { font-size: 13px; line-height: 20px; padding: 0 8px; border-radius: 10px; }
+
+.inn-popover {
+  position: absolute;
+  z-index: 10000;
+  width: 240px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+}
+.inn-pop-title { margin-bottom: 6px; font-weight: bold; }
+.inn-popover input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  background: transparent;
+  color: inherit;
+}
+.inn-pop-actions { margin-top: 8px; display: flex; gap: 6px; justify-content: flex-end; }
+.inn-pop-actions button {
+  padding: 3px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.inn-pop-actions .inn-save { background: #4d5256; border-color: #4d5256; color: #fff; }
+
+/* ---- hot replies ---- */
+.inn-hot-title { font-weight: bold; }
+.inn-hot-head { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.inn-hot-head img { width: 24px; height: 24px; border-radius: 4px; }
+.inn-hot-hearts { color: #e0475b; font-size: 12px; }
+.inn-hot-floor { margin-left: auto; font-size: 12px; color: #999 !important; }
+.inn-hot-body { overflow: hidden; }
+.inn-hot-body.inn-collapsed {
+  max-height: 160px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+.inn-hot-more { display: inline-block; margin-top: 4px; font-size: 12px; }
+
+@keyframes inn-flash {
+  from { background-color: rgba(255, 200, 0, 0.35); }
+  to { background-color: transparent; }
+}
+.inn-flash { animation: inn-flash 1.6s ease-out; }
+
+/* ---- V2EX night mode ---- */
+.inn-popover.inn-night { background: #22303f; color: #ddd; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); }
+.inn-night input,
+.inn-night .inn-pop-actions button { border-color: #445566; }
+.Night .inn-edit:hover { color: #eee; }
+.inn-night .inn-pop-actions .inn-save { background: #3b6ea5; border-color: #3b6ea5; }
