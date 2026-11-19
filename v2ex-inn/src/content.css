@@ -33,6 +33,15 @@
 .inn-big .inn-edit { opacity: 1; }
 .inn-big { margin-left: 8px; }
 .inn-big .inn-pill { font-size: 13px; line-height: 20px; padding: 0 8px; border-radius: 10px; }
+/* Untagged: the hidden edit button overlays instead of reserving space after the name. */
+.inn-tags:not(.inn-has) { margin-left: 0; position: relative; }
+.inn-tags:not(.inn-has) .inn-edit {
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+}
 
 .inn-popover {
   position: absolute;
@@ -92,4 +101,5 @@
 .inn-night input,
 .inn-night .inn-pop-actions button { border-color: #445566; }
 .Night .inn-edit:hover { color: #eee; }
+.Night .inn-tags:not(.inn-has) .inn-edit { background: #18222d; }
 .inn-night .inn-pop-actions .inn-save { background: #3b6ea5; border-color: #3b6ea5; }
