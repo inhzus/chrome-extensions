@@ -1,8 +1,9 @@
 // Shared storage helpers. Used by content scripts, popup and options page.
 // tags:     { [lowercased username]: { name: "DisplayName", tags: ["tag", ...] } }
-// settings: { hotEnabled, hotTop, hotMin, tagsEnabled }
+// settings: { hotEnabled, hotTop, hotMin, tagsEnabled, checkinEnabled }
+// checkin:  { date: "YYYY-MM-DD" (Beijing) of last success, pending?, failedAt? }
 const InnStore = (() => {
-  const DEFAULT_SETTINGS = { hotEnabled: true, hotTop: 5, hotMin: 3, tagsEnabled: true };
+  const DEFAULT_SETTINGS = { hotEnabled: true, hotTop: 5, hotMin: 3, tagsEnabled: true, checkinEnabled: true };
 
   async function getTags() {
     const { tags } = await chrome.storage.local.get('tags');
@@ -32,6 +33,15 @@ const InnStore = (() => {
     await chrome.storage.local.set({ settings });
   }
 
+  async function getCheckin() {
+    const { checkin } = await chrome.storage.local.get('checkin');
+    return checkin || {};
+  }
+
+  async function setCheckin(checkin) {
+    await chrome.storage.local.set({ checkin });
+  }
+
   function allTagNames(tags) {
     const set = new Set();
     Object.values(tags).forEach((u) => u.tags.forEach((t) => set.add(t)));
@@ -45,5 +55,5 @@ const InnStore = (() => {
     return `hsl(${h % 360} 65% 45%)`;
   }
 
-  return { DEFAULT_SETTINGS, getTags, setUserTags, replaceTags, getSettings, setSettings, allTagNames, tagColor };
+  return { DEFAULT_SETTINGS, getTags, setUserTags, replaceTags, getSettings, setSettings, getCheckin, setCheckin, allTagNames, tagColor };
 })();

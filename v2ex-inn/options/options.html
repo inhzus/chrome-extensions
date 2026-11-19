@@ -24,6 +24,10 @@
     <label>最多显示 <input type="number" id="hotTop" min="1" max="20" /> 条</label>
     <label>至少 <input type="number" id="hotMin" min="1" max="999" /> 个 ❤</label>
   </fieldset>
+  <fieldset>
+    <legend>每日签到</legend>
+    <label><input type="checkbox" id="checkinEnabled" /> 访问 V2EX 时自动领取每日登录奖励</label>
+  </fieldset>
   <button id="save">保存</button><span id="saved" hidden>已保存</span>
   <script src="../src/storage.js"></script>
   <script src="options.js"></script>

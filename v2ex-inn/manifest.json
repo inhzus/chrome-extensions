@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "V2EX Inn",
-  "version": "0.1.1",
-  "description": "Personal user tags and pinned hot replies for V2EX.",
+  "version": "0.2.0",
+  "description": "Personal user tags, pinned hot replies and auto daily check-in for V2EX.",
   "permissions": ["storage"],
   "icons": { "16": "icons/16.png", "48": "icons/48.png", "128": "icons/128.png" },
   "action": {
@@ -13,7 +13,7 @@
   "content_scripts": [
     {
       "matches": ["https://www.v2ex.com/*", "https://v2ex.com/*", "https://*.v2ex.com/*"],
-      "js": ["src/storage.js", "src/tags.js", "src/hot.js", "src/content.js"],
+      "js": ["src/storage.js", "src/tags.js", "src/hot.js", "src/checkin.js", "src/content.js"],
       "css": ["src/content.css"],
       "run_at": "document_idle"
     }

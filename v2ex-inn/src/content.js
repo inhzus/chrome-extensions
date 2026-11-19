@@ -3,6 +3,7 @@
 
   // Hot panel first so its cloned usernames get decorated too.
   InnHot.render(settings);
+  InnCheckin.run(settings);
   if (settings.tagsEnabled) {
     InnTags.update(tags);
     InnTags.decorate(document);

@@ -96,6 +96,22 @@
 }
 .inn-flash { animation: inn-flash 1.6s ease-out; }
 
+/* ---- check-in toast ---- */
+.inn-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10000;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  font-size: 13px;
+  transition: opacity 0.5s;
+}
+.inn-toast-out { opacity: 0; }
+
 /* ---- V2EX night mode ---- */
 .inn-popover.inn-night { background: #22303f; color: #ddd; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); }
 .inn-night input,
@@ -103,3 +119,4 @@
 .Night .inn-edit:hover { color: #eee; }
 .Night .inn-tags:not(.inn-has) .inn-edit { background: #18222d; }
 .inn-night .inn-pop-actions .inn-save { background: #3b6ea5; border-color: #3b6ea5; }
+.inn-toast.inn-night { background: #22303f; color: #ddd; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); }
