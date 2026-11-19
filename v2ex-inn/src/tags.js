@@ -25,7 +25,7 @@ const InnTags = (() => {
     });
     const btn = document.createElement('span');
     btn.className = 'inn-edit';
-    btn.textContent = entry ? '✎' : '＋';
+    btn.textContent = entry ? '✎' : '+';
     btn.title = entry ? '编辑标签' : '添加标签';
     span.appendChild(btn);
     span.classList.toggle('inn-has', !!entry);
