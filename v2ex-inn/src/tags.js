@@ -23,17 +23,20 @@ const InnTags = (() => {
       pill.title = '编辑标签';
       span.appendChild(pill);
     });
-    const btn = document.createElement('span');
-    btn.className = 'inn-edit';
-    btn.textContent = entry ? '✎' : '+';
-    btn.title = entry ? '编辑标签' : '添加标签';
-    span.appendChild(btn);
+    // Inline edit button only on the member page heading; elsewhere the hover chip does it.
+    if (span.classList.contains('inn-big')) {
+      const btn = document.createElement('span');
+      btn.className = 'inn-edit';
+      btn.textContent = entry ? '✎' : '+';
+      btn.title = entry ? '编辑标签' : '添加标签';
+      span.appendChild(btn);
+    }
     span.classList.toggle('inn-has', !!entry);
   }
 
-  function makeSpan(name) {
+  function makeSpan(name, big = false) {
     const span = document.createElement('span');
-    span.className = 'inn-tags';
+    span.className = big ? 'inn-tags inn-big' : 'inn-tags';
     span.dataset.user = name;
     span.addEventListener('click', (e) => {
       e.preventDefault();
@@ -62,9 +65,7 @@ const InnTags = (() => {
       );
       if (h1) {
         h1.dataset.inn = '1';
-        const span = makeSpan(h1.textContent.trim());
-        span.classList.add('inn-big');
-        h1.after(span);
+        h1.after(makeSpan(h1.textContent.trim(), true));
       }
     }
   }
@@ -79,8 +80,74 @@ const InnTags = (() => {
     popover = null;
   }
 
+  // A single floating chip above the hovered username, so nothing inline covers or shifts page text.
+  let chip = null;
+  let chipSpan = null;
+  let showTimer = 0;
+  let hideTimer = 0;
+
+  function hideChip() {
+    clearTimeout(showTimer);
+    clearTimeout(hideTimer);
+    if (chip) chip.hidden = true;
+    chipSpan = null;
+  }
+
+  function showChip(span) {
+    if (!chip) {
+      chip = document.createElement('span');
+      chip.className = 'inn-chip';
+      chip.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const span = chipSpan;
+        hideChip();
+        if (span) openEditor(span);
+      });
+      document.body.appendChild(chip);
+    }
+    const has = !!tags[span.dataset.user.toLowerCase()];
+    chip.textContent = has ? '✎ 标签' : '+ 标签';
+    chip.title = has ? '编辑标签' : '添加标签';
+    chip.classList.toggle('inn-night', !!document.querySelector('.Night'));
+    chip.hidden = false;
+    chipSpan = span;
+
+    const name = span.previousElementSibling || span;
+    const r = name.getBoundingClientRect();
+    const maxLeft = window.scrollX + document.documentElement.clientWidth - chip.offsetWidth - 4;
+    chip.style.left = `${Math.min(r.right + window.scrollX - 6, maxLeft)}px`;
+    chip.style.top = `${Math.max(window.scrollY, r.top + window.scrollY - chip.offsetHeight + 2)}px`;
+  }
+
+  // Hovered tag span, via its username link or its pills (not the member page heading).
+  function spanAt(el) {
+    const span = el.closest('.inn-tags') || el.closest('a[data-inn]')?.nextElementSibling;
+    return span?.matches('.inn-tags:not(.inn-big)') ? span : null;
+  }
+
+  document.addEventListener('mouseover', (e) => {
+    if (!(e.target instanceof Element)) return;
+    if (chip && chip.contains(e.target)) {
+      clearTimeout(hideTimer);
+      return;
+    }
+    const span = spanAt(e.target);
+    if (span) {
+      clearTimeout(hideTimer);
+      if (span === chipSpan && !chip.hidden) return;
+      clearTimeout(showTimer);
+      showTimer = setTimeout(() => showChip(span), 150);
+    } else {
+      clearTimeout(showTimer);
+      if (chipSpan) hideTimer = setTimeout(hideChip, 200);
+    }
+  });
+  window.addEventListener('scroll', hideChip, { capture: true, passive: true });
+
   function openEditor(span) {
     closeEditor();
+    hideChip();
     const name = span.dataset.user;
     const entry = tags[name.toLowerCase()];
 

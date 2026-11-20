@@ -19,7 +19,7 @@ const InnHot = (() => {
     cell.classList.add('inn-flash');
   }
 
-  function buildItem({ cell, hearts, floor }) {
+  function buildItem({ cell, hearts, floor }, collapseAt) {
     const item = document.createElement('div');
     item.className = 'cell inn-hot-item';
 
@@ -64,8 +64,10 @@ const InnHot = (() => {
       const body = content.cloneNode(true);
       body.classList.add('inn-hot-body');
       item.appendChild(body);
+      body.style.setProperty('--inn-collapse', `${collapseAt}px`);
       requestAnimationFrame(() => {
-        if (body.scrollHeight > 180) {
+        // A little slack so a reply just over the limit isn't folded for one line.
+        if (body.scrollHeight > collapseAt + 20) {
           body.classList.add('inn-collapsed');
           const more = document.createElement('a');
           more.href = 'javascript:';
@@ -101,7 +103,7 @@ const InnHot = (() => {
     title.className = 'cell inn-hot-title';
     title.textContent = `🔥 热门回复（本页 Top ${hot.length}）`;
     panel.appendChild(title);
-    hot.forEach((r) => panel.appendChild(buildItem(r)));
+    hot.forEach((r) => panel.appendChild(buildItem(r, settings.hotCollapse)));
 
     const sep = document.createElement('div');
     sep.className = 'sep20 inn-hot-sep';
