@@ -3,7 +3,7 @@
 Brave / Chrome extension for v2ex.com:
 
 1. **User tags** – hover a username, click ＋ to add your own tags (comma separated). Tags show next to that user everywhere: topic lists, replies, member pages. Manage, export and import them from the toolbar popup.
-2. **Hot replies** – on topic pages, the most-hearted replies of the current page are pinned under the topic (default: top 5 with ≥3 ❤). Click `#N` to jump to the original floor. Configure in the options page.
+2. **Hot replies** – on topic pages, the most-hearted replies of the current page are pinned under the topic (default: top 5 with ≥3 ❤). Click `#N` to jump to the original floor. Replies taller than 240px are folded behind 展开. Configure in the options page.
 3. **Auto check-in** – the first time you open any v2ex.com page each day (Beijing time), the daily login reward is claimed for you in the background. At most one attempt per day (or per hour after a failure). Turn it off in the options page.
 
 ## Install

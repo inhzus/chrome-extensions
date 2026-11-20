@@ -1,9 +1,9 @@
 // Shared storage helpers. Used by content scripts, popup and options page.
 // tags:     { [lowercased username]: { name: "DisplayName", tags: ["tag", ...] } }
-// settings: { hotEnabled, hotTop, hotMin, tagsEnabled, checkinEnabled }
+// settings: { hotEnabled, hotTop, hotMin, hotCollapse (px), tagsEnabled, checkinEnabled }
 // checkin:  { date: "YYYY-MM-DD" (Beijing) of last success, pending?, failedAt? }
 const InnStore = (() => {
-  const DEFAULT_SETTINGS = { hotEnabled: true, hotTop: 5, hotMin: 3, tagsEnabled: true, checkinEnabled: true };
+  const DEFAULT_SETTINGS = { hotEnabled: true, hotTop: 5, hotMin: 3, hotCollapse: 240, tagsEnabled: true, checkinEnabled: true };
 
   async function getTags() {
     const { tags } = await chrome.storage.local.get('tags');

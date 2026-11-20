@@ -1,4 +1,4 @@
-const ids = ['tagsEnabled', 'hotEnabled', 'hotTop', 'hotMin', 'checkinEnabled'];
+const ids = ['tagsEnabled', 'hotEnabled', 'hotTop', 'hotMin', 'hotCollapse', 'checkinEnabled'];
 
 InnStore.getSettings().then((s) => {
   for (const id of ids) {
