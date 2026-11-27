@@ -28,7 +28,9 @@ const InnHot = (() => {
     const avatar = cell.querySelector('img.avatar');
     if (avatar) {
       const img = avatar.cloneNode();
-      img.width = 24;
+      // Size comes from CSS; drop V2EX's inline width/max-height and size attrs.
+      img.removeAttribute('style');
+      img.removeAttribute('width');
       img.removeAttribute('height');
       head.appendChild(img);
     }
